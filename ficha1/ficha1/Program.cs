@@ -57,8 +57,7 @@ public class Ficha1
 			string numI = num.ToString();
             char[] arr = numI.ToCharArray();
             Array.Reverse(arr);
-            numI = arr.ToString();
-            num = int.Parse(arr);
+            //num = int.Parse(arr);
             Console.WriteLine(arr);
 			Console.Read();
 		}
@@ -68,7 +67,16 @@ public class Ficha1
             Console.Read();
         }
 	}
-    static void Main(string[] args)
+	public void Inverter2(uint num)
+	{
+			string numI = num.ToString();
+			char[] arr = numI.ToCharArray();
+			Array.Reverse(arr);
+			//num = uint.Parse(arr);
+			Console.WriteLine(arr);
+			Console.Read();
+	}
+	static void Main()
     {
         Ficha1 ficha1 = new();
 		ficha1.Dobro(8);
@@ -76,5 +84,6 @@ public class Ficha1
 		ficha1.Soma(3);
 		ficha1.Soma2();
         ficha1.Inverter1(100);
-    }
+		ficha1.Inverter2(100);
+	}
 }
