@@ -67,8 +67,81 @@ public class Ficha1
 			Console.Read();
 	}
 
+	public void DigitControl()
+	{
+		int num, dc, uni, dez, cent;
+		Console.WriteLine("Introduza um número com 3 algarismos.");
+		while (!int.TryParse(Console.ReadLine(), out num) && (num <100 || num > 999))
+			Console.Write("Não é um número inteiro com 3 algarismos! Volte a tentar: ");
+		int uni, dez, cent;
+		uni = num % 10;
+		dez = (num / 10) % 10;
+		cent = num / 100;
+		dc = (5*uni + 3*dez + c) % 7;
+		Console.WriteLine("Digito de Controlo = {0}", ((num*10) + dc));
+	}
+
+	public void Ordenar()
+	{
+		int temp, i = 0;
+		int[] num;
+		Console.WriteLine("Introduza 3 números.");
+		while (i++ < 3)
+		{
+			while (!int.TryParse(Console.ReadLine(), out num[i]))
+				Console.Write("Não é um número inteiro! Volte a tentar: ");
+		}
+		if (num[1] > num[2])
+		{
+			temp = num[1];
+			num[1] = num[2];
+			num[2] = temp;
+		}
+		else if (num[2] > num[3])
+		{
+			temp = num[2];
+			num[2] = num[3];
+			num[3] = temp;
+		}
+		else if (num[1] > num[2])
+		{
+			temp = num[1];
+			num[1] = num[2];
+			num[2] = temp;
+		}
+		Console.Write("1º {0} \n2º {1} \n3º {2}", num[0], num[1],num[2]);
+	}
+	public void ItoBin()
+	{
+		int num, resto;
+		while (!int.TryParse(Console.ReadLine(), out num)) Console.Write("Não é um número inteiro! Volte a tentar: ");
+		while (num)
+		{
+			resto = num % 2;
+			num /= 2;
+			Console.Write(resto);
+		}
+	}
+
+	public void SomaMediaMaxMin()
+	{
+		int n, i = 0;
+		float med = 0, max = 0, min = 0;
+		float[] num;
+		Console.WriteLine("Introduza quantos números vai introduzir: ");
+		while (!int.TryParse(Console.ReadLine(), out n)) Console.Write("Não é um número inteiro! Volte a tentar: ");
+		while (i++ < n)
+		{
+			while (!float.TryParse(Console.ReadLine(), out num[i]))
+				Console.Write("Não é um número! Volte a tentar: ");
+			med += num[i];
+			if (max < num[i]) max = num[i];
+			if (min > num[i]) min = num[i];
+		}
+		Console.WriteLine("Soma = {0}\nMedia = {1}\nMax = {2}\nMin = {3}", med, med/n, max, min);
+	}
 	public bool Primos(int num)
-	{ //algoritmo mais eficiente para numeros PRIMOS
+	{ 	//algoritmo mais eficiente para numeros PRIMOS
 		// enquanto o Quociente for menor que o DIVISOR, ele incrementa
 		//poupa-se n iterações/divisoes
 		int resto, quociente, div = 2;
