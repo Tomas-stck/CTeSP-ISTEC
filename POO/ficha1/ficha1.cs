@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+
+using System.Globalization;
 using System.Linq.Expressions;
 
 public class Ficha1
@@ -26,9 +27,8 @@ public class Ficha1
     public int Soma2()
     {
         int num, total = 0;
-
 		Console.WriteLine("Introduza números inteiros para somar.");
-		Console.WriteLine("Para terminar, introduza ´-1´.");
+		Console.WriteLine("Para terminar, introduza '-1'.");
 		while (true)
         {
             Console.Write("Input: ");
@@ -44,20 +44,11 @@ public class Ficha1
     }
     public void Inverter1(int num)
     {
-		/*char temp;
-		numI = num.ToString();
-		char temp = '\0';
-		string numI = num.ToString();
-		temp = numI[0];
-		numI[0] = numI[2];
-		numI[2] = temp;
-		 */
 		if (num >= 100 && num <= 999)
         {
 			string numI = num.ToString();
             char[] arr = numI.ToCharArray();
             Array.Reverse(arr);
-            //num = int.Parse(arr);
             Console.WriteLine(arr);
 			Console.Read();
 		}
@@ -72,9 +63,32 @@ public class Ficha1
 			string numI = num.ToString();
 			char[] arr = numI.ToCharArray();
 			Array.Reverse(arr);
-			//num = uint.Parse(arr);
 			Console.WriteLine(arr);
 			Console.Read();
+	}
+
+	public bool Primos(int num)
+	{ //algoritmo mais eficiente para numeros PRIMOS
+		// enquanto o Quociente for menor que o DIVISOR, ele incrementa
+		//poupa-se n iterações/divisoes
+		int resto, quociente, div = 2;
+		Console.Write("Insira um numero:");
+		int num = Console.ReadLine();
+		do
+		{
+			resto = num % div;
+			quociente = num / div;
+			div++; 
+		} 
+		while (quociente >= div && resto !=0);
+		return (resto != 0) || (num == 2);
+	}
+	public void Teste()
+	{
+		int x = 1, y = 2;
+		for ( x , y; x > 5; x++) y = x;
+		while (x++ < 5) y = x;
+		Console.WriteLine("x = " + x + " | y = " + y);
 	}
 	static void Main()
     {
