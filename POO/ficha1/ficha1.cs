@@ -73,11 +73,10 @@ public class Ficha1
 		Console.WriteLine("Introduza um número com 3 algarismos.");
 		while (!int.TryParse(Console.ReadLine(), out num) && (num <100 || num > 999))
 			Console.Write("Não é um número inteiro com 3 algarismos! Volte a tentar: ");
-		int uni, dez, cent;
 		uni = num % 10;
 		dez = (num / 10) % 10;
 		cent = num / 100;
-		dc = (5*uni + 3*dez + c) % 7;
+		dc = (5*uni + 3*dez + cent) % 7;
 		Console.WriteLine("Digito de Controlo = {0}", ((num*10) + dc));
 	}
 
@@ -111,11 +110,12 @@ public class Ficha1
 		}
 		Console.Write("1º {0} \n2º {1} \n3º {2}", num[0], num[1],num[2]);
 	}
-	public void ItoBin()
+	public void IntToBin()
 	{
 		int num, resto;
 		while (!int.TryParse(Console.ReadLine(), out num)) Console.Write("Não é um número inteiro! Volte a tentar: ");
-		while (num)
+		if (num < 0) Console.WriteLine('-');
+		while (num != 0)
 		{
 			resto = num % 2;
 			num /= 2;
@@ -127,9 +127,9 @@ public class Ficha1
 	{
 		int n, i = 0;
 		float med = 0, max = 0, min = 0;
-		float[] num;
 		Console.WriteLine("Introduza quantos números vai introduzir: ");
 		while (!int.TryParse(Console.ReadLine(), out n)) Console.Write("Não é um número inteiro! Volte a tentar: ");
+		float[] num = new float[n];
 		while (i++ < n)
 		{
 			while (!float.TryParse(Console.ReadLine(), out num[i]))
@@ -145,8 +145,6 @@ public class Ficha1
 		// enquanto o Quociente for menor que o DIVISOR, ele incrementa
 		//poupa-se n iterações/divisoes
 		int resto, quociente, div = 2;
-		Console.Write("Insira um numero:");
-		int num = Console.ReadLine();
 		do
 		{
 			resto = num % div;
@@ -159,7 +157,7 @@ public class Ficha1
 	public void Teste()
 	{
 		int x = 1, y = 2;
-		for ( x , y; x > 5; x++) y = x;
+		for ( x = 1; x > 5; x++) y = x;
 		while (x++ < 5) y = x;
 		Console.WriteLine("x = " + x + " | y = " + y);
 	}
@@ -172,5 +170,10 @@ public class Ficha1
 		ficha1.Soma2();
         ficha1.Inverter1(100);
 		ficha1.Inverter2(100);
-	}
+		ficha1.DigitControl();
+		ficha1.Ordenar();
+		ficha1.IntToBin();
+		ficha1.SomaMediaMaxMin();
+		ficha1.Primos(45);
+	}	
 }
