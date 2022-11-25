@@ -92,6 +92,18 @@ namespace ConsoleApp1
 			dc = (5 * uni + 3 * dez + cent) % 7;
 			Console.WriteLine("Digito de Controlo = {0}", num * 10 + dc);
 		}
+		public void DigitControl()
+		{
+			int num, dc, uni, dez, cent;
+			Console.WriteLine("Introduza um número com 3 algarismos.");
+			while (!int.TryParse(Console.ReadLine(), out num) && (num <100 || num > 999))
+				Console.Write("Não é um número inteiro com 3 algarismos! Volte a tentar: ");
+			uni = num % 10;
+			dez = (num / 10) % 10;
+			cent = num / 100;
+			dc = (5*uni + 3*dez + cent) % 7;
+			Console.WriteLine("Digito de Controlo = {0}", ((num*10) + dc));
+		}
 
 		public void Ordenar()
 		{
@@ -190,32 +202,69 @@ namespace ConsoleApp1
 			}
 			Console.WriteLine("É capicua");
 		}
-		public void factorial()
+		public void IntToBin()
 		{
-			long num, f = 1;
-			Console.WriteLine("Capicua: Introduza um número inteiro positivo: ");
-			while (!long.TryParse(Console.ReadLine(), out num)) Console.Write("Não é um número inteiro positivo! Volte a tentar: ");
-			while (num > 1)
-				f *= num--;
-			System.Console.WriteLine("Factorial de {0} é {1}", num, f);
+			int num, resto;
+			while (!int.TryParse(Console.ReadLine(), out num)) Console.Write("Não é um número inteiro! Volte a tentar: ");
+			if (num < 0) Console.WriteLine('-');
+			while (num != 0)
+			{
+				long num, f = 1;
+				Console.WriteLine("Capicua: Introduza um número inteiro positivo: ");
+				while (!long.TryParse(Console.ReadLine(), out num)) Console.Write("Não é um número inteiro positivo! Volte a tentar: ");
+				while (num > 1)
+					f *= num--;
+				System.Console.WriteLine("Factorial de {0} é {1}", num, f);
+			}
 		}
 		public long factorial_r(int n)
 		{
-			if (n == 1) return 1;
-			return n * factorial_r(n - 1);
+				if (n == 1) return 1;
+				return n * factorial_r(n - 1);
 		}
 		public long potencia_r(int n, int exp)
 		{
-			if (exp == 0) return 1;
-			return n * factorial_r(n, exp - 1);
+				if (exp == 0) return 1;
+				return n * factorial_r(n, exp - 1);
 		}
 		public long fibonnacci_r(int n)
 		{
 			if (n < 1) return 0;
-			if (n == 1 || n == 2) return 1;
-			return fibonnacci_r(n - 2) + fibonnacci_r(n - 1);
+				if (n == 1 || n == 2) return 1;
+				return fibonnacci_r(n - 2) + fibonnacci_r(n - 1);
 		}
 
+		public void SomaMediaMaxMin()
+		{
+			int n, i = 0;
+			float med = 0, max = 0, min = 0;
+			Console.WriteLine("Introduza quantos números vai introduzir: ");
+			while (!int.TryParse(Console.ReadLine(), out n)) Console.Write("Não é um número inteiro! Volte a tentar: ");
+			float[] num = new float[n];
+			while (i++ < n)
+			{
+				while (!float.TryParse(Console.ReadLine(), out num[i]))
+					Console.Write("Não é um número! Volte a tentar: ");
+				med += num[i];
+				if (max < num[i]) max = num[i];
+				if (min > num[i]) min = num[i];
+			}
+			Console.WriteLine("Soma = {0}\nMedia = {1}\nMax = {2}\nMin = {3}", med, med/n, max, min);
+		}
+		public bool Primos(int num)
+		{ 	//algoritmo mais eficiente para numeros PRIMOS
+			// enquanto o Quociente for menor que o DIVISOR, ele incrementa
+			//poupa-se n iterações/divisoes
+			int resto, quociente, div = 2;
+			do
+			{
+				resto = num % div;
+				quociente = num / div;
+				div++; 
+			} 
+			while (quociente >= div && resto !=0);
+			return (resto != 0) || (num == 2);
+		}
 		static void Main()
 		{
 			Ficha1 ficha1 = new();
@@ -223,16 +272,13 @@ namespace ConsoleApp1
 			ficha1.Par(8);
 			ficha1.Soma(3);
 			ficha1.Soma2();
-			ficha1.Inverter1();
-			ficha1.Inverter2();
+			ficha1.Inverter1(100);
+			ficha1.Inverter2(100);
 			ficha1.DigitControl();
 			ficha1.Ordenar();
 			ficha1.IntToBin();
 			ficha1.SomaMediaMaxMin();
-			ficha1.Primos();
-			ficha1.Capicua();
-			Console.Read();
-
-		}
+			ficha1.Primos(45);
+		}	
 	}
 }
