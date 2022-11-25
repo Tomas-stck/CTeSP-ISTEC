@@ -12,7 +12,7 @@ int main(int argc, char** argv)
 	cin >> b;
 	cout << "Introduza valor: \n";
 	cin >> c;
-	if ( (a + b) > c || (a + c) > b || (c + b) > a)
+	if ((a + b) > c && (a + c) > b && (c + b) > a)
 		cout << "É um triangulo \n";
 	else
 		cout << "Não é triangulo \n";
