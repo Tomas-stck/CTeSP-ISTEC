@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 //private - protected - internal -public
 namespace Casino
 {
+	/* Quais a principais diferenças entre Struct e Class */
+	public struct Xpto
+	{
+		int mesa;
+		public Xpto(int n)
+		{
+			this.mesa = n;
+		}
+	}
 
+	/* Enumeratores = !([Lista de constantes])!, nomes normalmente em maiúsculas */
     public enum FICHAS:int
     {
            VERMELHA=10,
@@ -15,6 +25,12 @@ namespace Casino
            PRATA=125,
            OURO=500
     }
+	/* Private - só é visivel na proprioa class
+		Protected - visivel na propria classe e derivadas
+		Internal - é visto dentro do Package
+		Abstract - classe que tem pelo menos um metdo abstracto. Está impedida de instanciar objectos
+		Herança -
+	*/
     public abstract class Jogo : IJogo, IComparable<Jogo>
     {
         //elementos estáticos
@@ -26,13 +42,17 @@ namespace Casino
             Console.WriteLine(DateTime.Now);
             Console.WriteLine("VALOR DA APOSTA MÁXIMA:{0}",Jogo.MAXAPOSTA );
             Console.WriteLine("FICHAS DISPONÍVEIS");
-          
+			foreach (FICHAS f in Enum.GetValues(typeof(FICHAS)))
+			{
+				System.Console.WriteLine(f + "->" + (int)f + "€");
+			}
         }
  
         //campos
         private string _jogador;
         protected int _montante;
-        //properties
+        //properties - Métodos que permitem leitura ou escrita de campos.
+		// Dá a possibilidade de criar regras
         #region properties
         public string Jogador
         {
@@ -60,14 +80,17 @@ namespace Casino
             this.Montante = montante;
         }
 
-         ~Jogo()
+		//Destrutor
+        ~Jogo()
         {
+			// desconecta de Base Dados, desreferencia pointers...etc
             Console.WriteLine("Destrutor desreferenciando o {0}", this._jogador);
             Jogo.total--;
         }
         #endregion
 		//metodos da Interface
-		// VIRTUAL permite fazer override ao método
+		// VIRTUAL permite fazer override ao método na classe derivada
+		// Override só é permitido por métodos Abstractos ou Virtuais
         public virtual void ver()
         {
             Console.WriteLine("--------------------------< "+ this._jogador +" >----------------------------");
@@ -84,7 +107,7 @@ namespace Casino
 			this._montante += euros;
 		}
 		//método abstracto ( algo que tem de ser desenvolvido e ainda nao está pronto)
-		//obriga a que a classe seja abstrata também
+		//obriga derivadas a implementar, e a que a classe mãe seja abstrata
 		public abstract void jogar(FICHAS[] fichas);
 		public int CompareTo(Jogo other)
 		{

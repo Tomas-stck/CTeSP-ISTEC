@@ -17,9 +17,15 @@ namespace Casino
 		}
         static void Main(string[] args)
         {
+			// Metodo Enxtensor a funcionar:
+			int eco = 5;
+			eco = eco.incremento(1);
+			System.Console.WriteLine("Metodo extensao: eco = {0}", eco);
+
             Jogo.Inicia();
             JogoDosDados ze = new JogoDosDados("Zé Maria",2000);
 			ze.OnPremio += Jogo_OnPremio; // registo do evento, defenindo o Event Handler
+			ze.cumprimenta("Bom dia");
 			Thread.Sleep(2000);
 			JogoDosDados maria = new JogoDosDados("Maria", 2000);
 			maria.OnPremio += Jogo_OnPremio;
