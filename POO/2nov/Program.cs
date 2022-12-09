@@ -21,6 +21,7 @@ namespace Casino
 			int eco = 5;
 			eco = eco.incremento(1);
 			System.Console.WriteLine("Metodo extensao: eco = {0}", eco);
+			//
 
             Jogo.Inicia();
             JogoDosDados ze = new JogoDosDados("Zé Maria",2000);
