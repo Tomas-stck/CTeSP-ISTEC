@@ -1,5 +1,5 @@
-#include <string.h>
 #include <iostream>
+#include <stdlib.h>
 
 using namespace std;
 int	main( int ac, char **av ) {
@@ -16,10 +16,10 @@ int	main( int ac, char **av ) {
 
 	p = (int*)malloc(sizeof(int)); // guarda o pointer do mesmo tipo do point criado, que aponta
 								  // para a memória alocada.
-	if (!p)
+	if (!p) // protecção de falha de alocação de memória
 		return 0;
 
-	*p = 44; // escreve 44 na memória alocada
+	*p = 44; // escreve 44 na memória alocada, apontada por *p
 
 	cout << *p << endl;
 
